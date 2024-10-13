@@ -15,8 +15,8 @@ public class EnrollmentService : IEnrollmentService
 
     public async Task Create(Enrollment enrollment)
     {
-        _context.Enrollments.Add(enrollment);
-        _context.SaveChanges();
+        await _context.Enrollments.AddAsync(enrollment);
+        await _context.SaveChangesAsync();
     }
 
     public async Task Delete(int enrollmentId)
@@ -28,14 +28,25 @@ public class EnrollmentService : IEnrollmentService
 
     public async Task<List<Enrollment>> GetAllEnrollments()
     {
-        var enrollments = await _context.Enrollments.ToListAsync();
-        return enrollments;
+        return await _context.Enrollments
+            .Include(e => e.Student)
+            .Include(e => e.Teacher)
+            .Include(e => e.Course)
+            .ToListAsync();
+        //var enrollments = await _context.Enrollments.ToListAsync();
+        //return enrollments;
     }
 
     public async Task<Enrollment> GetById(int id)
     {
-        var enrollment = await _context.Enrollments.FindAsync(id);
+        var enrollment = await _context.Enrollments
+            .Include(e => e.Student)
+            .Include(e => e.Teacher)
+            .Include(e => e.Course)
+            .FirstOrDefaultAsync(e => e.EnrollmentId == id);
         return enrollment;
+        //var enrollment = await _context.Enrollments.FindAsync(id);
+        //return enrollment;
     }
 
     public async Task Update(Enrollment enrollment)
