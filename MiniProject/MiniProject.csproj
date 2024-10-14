@@ -20,4 +20,8 @@
     <ProjectReference Include="..\MiniProject.DataAccess\MiniProject.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="FrontEnd\" />
+  </ItemGroup>
+
 </Project>
