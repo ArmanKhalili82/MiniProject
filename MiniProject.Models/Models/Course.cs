@@ -14,9 +14,9 @@ public class Course
     [Required]
     public int Unit {  get; set; }
     [JsonIgnore]
-    public List<StudentCourse> StudentCourses { get; set; }
+    public List<StudentCourse>? StudentCourses { get; set; }
     [JsonIgnore]
-    public List<TeacherCourse> TeacherCourses { get; set; }
+    public List<TeacherCourse>? TeacherCourses { get; set; }
     [JsonIgnore]
-    public List<Enrollment> Enrollments { get; set; }
+    public List<Enrollment>? Enrollments { get; set; }
 }

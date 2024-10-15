@@ -17,7 +17,10 @@ export const updateCourse = createAsyncThunk('updateCourse', async (course) => {
 });
 
 export const deleteCourse = createAsyncThunk('deleteCourse', async (courseId) => {
-    const response = await axios.delete(`https://localhost:7046/api/Course/Delete/${courseId}`);
+    if (!courseId) {
+      throw new Error('Invalid ID');
+    }
+    await axios.delete(`https://localhost:7046/api/Course/Delete/${courseId}`);
     return courseId;
 });
 

@@ -17,7 +17,10 @@ export const updateTeacher = createAsyncThunk('updateTeacher', async (teacher) =
 });
 
 export const deleteTeacher = createAsyncThunk('deleteTeacher', async (teacherId) => {
-    const response = await axios.delete(`https://localhost:7046/api/Teacher/Delete/${teacherId}`);
+    if (!teacherId) {
+      throw new Error('Invalid ID');
+    }
+    await axios.delete(`https://localhost:7046/api/Teacher/Delete/${teacherId}`);
     return teacherId;
 });
 

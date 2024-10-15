@@ -17,7 +17,10 @@ export const updateEnrollment = createAsyncThunk('updateEnrollment', async (enro
 });
 
 export const deleteEnrollment = createAsyncThunk('deleteEnrollment', async (enrollmentId) => {
-    const response = await axios.delete(`https://localhost:7046/api/Student/Delete/${enrollmentId}`);
+    if (!enrollmentId) {
+      throw new Error('Invalid ID');
+    }
+    await axios.delete(`https://localhost:7046/api/Student/Delete/${enrollmentId}`);
     return enrollmentId;
 });
 

@@ -16,10 +16,18 @@ export const updateStudent = createAsyncThunk('updateStudent', async (student) =
     return response.data;
 });
 
+
 export const deleteStudent = createAsyncThunk('deleteStudent', async (studentId) => {
-    const response = await axios.delete(`https://localhost:7046/api/Student/Delete/${studentId}`);
-    return studentId;
+  if (!studentId) {
+    throw new Error('Invalid ID');
+  }
+  await axios.delete(`https://localhost:7046/api/Student/Delete/${studentId}`);
+  return studentId;
 });
+// export const deleteStudent = createAsyncThunk('deleteStudent', async (studentId) => {
+//     const response = await axios.delete(`https://localhost:7046/api/Student/Delete/${studentId}`);
+//     return studentId;
+// });
 
 const studentsSlice = createSlice({
     name: 'students',
