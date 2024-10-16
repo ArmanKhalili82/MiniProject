@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import { IoSchool } from "react-icons/io5";
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
@@ -18,12 +19,12 @@ const Navbar = () => {
         { label: "Enrollments", href: "/enrollments"},
     ]
   return (
-    <nav className='sticky bg-orange-600 top-0 z-50 py-3 backdrop-blur-lg'>
+    <nav className='sticky bg-gray-400 top-0 z-50 py-3 backdrop-blur-lg'>
         <div className='container px-4 mx-auto relative text-sm'>
             <div className='flex justify-between items-center'>
                 <div className='flex items-center flex-shrink-0'>
-                    <h3>Logo</h3>
                     {/* <img src={logo} alt="" /> */}
+                    <IoSchool size={25} color='white' />
                 </div>
                 <ul className='hidden lg:flex ml-14 space-x-12'>
                     {navLinks.map((item, index)=> (

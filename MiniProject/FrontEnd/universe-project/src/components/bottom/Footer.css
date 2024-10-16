@@ -1,0 +1,15 @@
+@keyframes wave-animation {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(-10px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  .wave-animation {
+    animation: wave-animation 4s ease-in-out infinite;
+  }
