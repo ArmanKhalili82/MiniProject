@@ -15,8 +15,6 @@ public class Teacher
     [Required]
     [MaxLength(50)]
     public string LastName { get; set; }
-    [JsonIgnore]
-    public List<TeacherCourse>? TeacherCourses { get; set; }
-    [JsonIgnore]
-    public List<Enrollment>? Enrollments { get; set; }
+    public List<TeacherCourse> TeacherCourses { get; set; }
+    public List<Enrollment> Enrollments { get; set; }
 }

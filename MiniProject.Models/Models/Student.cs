@@ -16,8 +16,6 @@ public class Student
     [MaxLength(50)]
     public string LastName { get; set; }
     public int NationalId { get; set; }
-    [JsonIgnore]
-    public List<StudentCourse>? StudentCourses { get; set; }
-    [JsonIgnore]
-    public List<Enrollment>? Enrollments { get; set; }
+    public List<StudentCourse> StudentCourses { get; set; }
+    public List<Enrollment> Enrollments { get; set; }
 }

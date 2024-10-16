@@ -6,13 +6,20 @@ export const getStudents = createAsyncThunk('getStudents', async () => {
     return response.data;
 });
 
-export const createStudent = createAsyncThunk('createStudent', async (student) => {
+export const studentDetails = createAsyncThunk('studentDetails', async (studentId) => {
+  const response = await axios.get(`https://localhost:7046/api/Student/${studentId}/details`);
+  return response.data;
+})
+
+export const createStudent = createAsyncThunk('createStudent', async (student, {dispatch}) => {
     const response = await axios.post('https://localhost:7046/api/Student/Create', student);
+    dispatch(getStudents());
     return response.data;
 });
 
-export const updateStudent = createAsyncThunk('updateStudent', async (student) => {
+export const updateStudent = createAsyncThunk('updateStudent', async (student, {dispatch}) => {
     const response = await axios.put('https://localhost:7046/api/Student/Update', student);
+    dispatch(getStudents());
     return response.data;
 });
 
@@ -50,6 +57,10 @@ const studentsSlice = createSlice({
       .addCase(getStudents.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+      })
+      //Handele Student Details
+      .addCase(studentDetails.fulfilled, (state, action) => {
+        state.studentDetails = action.payload;
       })
 
       // Handle create student

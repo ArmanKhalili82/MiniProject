@@ -6,13 +6,15 @@ export const getCourses = createAsyncThunk('getCourses', async () => {
     return response.data;
 });
 
-export const createCourse = createAsyncThunk('createCourse', async (course) => {
+export const createCourse = createAsyncThunk('createCourse', async (course, {dispatch}) => {
     const response = await axios.post('https://localhost:7046/api/Course/Create', course);
+    dispatch(getCourses());
     return response.data;
 });
 
-export const updateCourse = createAsyncThunk('updateCourse', async (course) => {
+export const updateCourse = createAsyncThunk('updateCourse', async (course, {dispatch}) => {
     const response = await axios.put('https://localhost:7046/api/Course/Update', course);
+    dispatch(getCourses());
     return response.data;
 });
 

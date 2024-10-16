@@ -1,12 +1,13 @@
-﻿using MiniProject.Models.Models;
+﻿using MiniProject.Models.Dtos;
+using MiniProject.Models.Models;
 
 namespace MiniProject.Business.EnrollmentService;
 
 public interface IEnrollmentService
 {
-    Task<List<Enrollment>> GetAllEnrollments();
-    Task<Enrollment> GetById(int id);
-    Task Create(Enrollment enrollment);
-    Task Update(Enrollment enrollment);
+    Task<List<EnrollmentDto>> GetAllEnrollments();
+    Task<EnrollmentDto> GetById(int id);
+    Task Create(EnrollmentDto enrollmentDto);
+    Task Update(EnrollmentDto enrollmentDto);
     Task Delete(int enrollmentId);
 }

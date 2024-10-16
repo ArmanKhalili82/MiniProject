@@ -1,12 +1,13 @@
-﻿using MiniProject.Models.Models;
+﻿using MiniProject.Models.Dtos;
+using MiniProject.Models.Models;
 
 namespace MiniProject.Business.TeacherService;
 
 public interface ITeacherService
 {
-    Task<List<Teacher>> GetAllTeachers();
-    Task<Teacher> GetById(int id);
-    Task Create(Teacher teacher);
-    Task Update(Teacher teacher);
+    Task<List<TeacherDto>> GetAllTeachers();
+    Task<TeacherDto> GetById(int id);
+    Task Create(TeacherDto teacherDto);
+    Task Update(TeacherDto teacherDto);
     Task Delete(int teacherId);
 }

@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { studentDetails } from '../redux/slices/studentsSlice';
 import { deleteStudent } from '../redux/slices/studentsSlice'; 
 import StudentList from '../components/StudentList';
 import CreateOrUpdateStudentDialog from '../components/CreateOrUpdateStudentDialog';
+import StudentDetailDialog from '../components/StudentDetailDialog';
 import Button from '../components/ui/Button';
 
 const StudentPage = () => {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
+  const [selectedStudentId, setSelectedStudentId] = useState(null);
   const dispatch = useDispatch();
 
+
+  const handleDetails = (studentId) => {
+    setSelectedStudentId(studentId);
+    setDialogOpen(true);
+  };
   const handleEdit = (student) => {
     setSelectedStudent(student);
     setDialogOpen(true);
@@ -36,6 +44,13 @@ const StudentPage = () => {
         student={selectedStudent}
       />
       <StudentList onEdit={handleEdit} onDelete={handleDelete} />
+      {/* <StudentDetailDialog
+        isOpen={isDialogOpen}
+        onClose={handleDialogClose}
+        studentId={selectedStudentId}
+        studentDetails={studentDetails}
+        getStudentDetails={(id) => dispatch(studentDetails(id))}
+      /> */}
     </div>
   );
 };

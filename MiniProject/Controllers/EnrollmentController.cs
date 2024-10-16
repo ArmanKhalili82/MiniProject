@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MiniProject.Business.EnrollmentService;
+using MiniProject.Models.Dtos;
 using MiniProject.Models.Models;
 
 namespace MiniProject.Controllers
@@ -17,7 +18,7 @@ namespace MiniProject.Controllers
         }
 
         [HttpGet("GetEnrollments")]
-        public async Task<IActionResult> GetEnrollments()
+        public async Task<ActionResult<IEnumerable<EnrollmentDto>>> GetEnrollments()
         {
             try
             {
@@ -34,7 +35,7 @@ namespace MiniProject.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Enrollment>> GetEnrollment(int id)
+        public async Task<ActionResult<EnrollmentDto>> GetEnrollment(int id)
         {
             try
             {
@@ -59,7 +60,7 @@ namespace MiniProject.Controllers
         }
 
         [HttpPost("Create")]
-        public async Task<IActionResult> Create([FromBody] Enrollment model)
+        public async Task<IActionResult> Create([FromBody] EnrollmentDto model)
         {
             if (!ModelState.IsValid)
             {
@@ -81,7 +82,7 @@ namespace MiniProject.Controllers
         }
 
         [HttpPut("Update")]
-        public async Task<IActionResult> Update([FromBody] Enrollment model)
+        public async Task<IActionResult> Update([FromBody] EnrollmentDto model)
         {
             if (!ModelState.IsValid)
             {

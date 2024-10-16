@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MiniProject.Business.StudentService;
 using MiniProject.Business.TeacherService;
+using MiniProject.Models.Dtos;
 using MiniProject.Models.Models;
 
 namespace MiniProject.Controllers
@@ -18,14 +19,14 @@ namespace MiniProject.Controllers
         }
 
         [HttpGet("GetTeachers")]
-        public async Task<IActionResult> GetTeachers()
+        public async Task<ActionResult<IEnumerable<TeacherDto>>> GetTeachers()
         {
             var teachers = await _teacherService.GetAllTeachers();
             return Ok(teachers);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Teacher>> GetTeacher(int id)
+        public async Task<ActionResult<TeacherDto>> GetTeacher(int id)
         {
             var teacher = await _teacherService.GetById(id);
             if (teacher == null)
@@ -36,14 +37,14 @@ namespace MiniProject.Controllers
         }
 
         [HttpPost("Create")]
-        public async Task<IActionResult> Create([FromBody] Teacher model)
+        public async Task<IActionResult> Create([FromBody] TeacherDto model)
         {
             await _teacherService.Create(model);
             return Ok();
         }
 
         [HttpPut("Update")]
-        public async Task<IActionResult> Update([FromBody] Teacher model)
+        public async Task<IActionResult> Update([FromBody] TeacherDto model)
         {
             await _teacherService.Update(model);
             return Ok();

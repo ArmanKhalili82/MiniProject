@@ -1,12 +1,14 @@
-﻿using MiniProject.Models.Models;
+﻿using MiniProject.Models.Dtos;
+using MiniProject.Models.Models;
 
 namespace MiniProject.Business.StudentService;
 
 public interface IStudentService
 {
-    Task<List<Student>> GetAllStudents();
-    Task<Student> GetById(int id);
-    Task Create(Student student);
-    Task Update(Student student);
+    Task<List<StudentDto>> GetAllStudents();
+    Task<StudentDto> GetById(int id);
+    Task Create(StudentDto studentDto);
+    Task Update(StudentDto studentDto);
+    Task<StudentDetailDto> GetStudentDetails(int id);
     Task Delete(int studentId);
 }

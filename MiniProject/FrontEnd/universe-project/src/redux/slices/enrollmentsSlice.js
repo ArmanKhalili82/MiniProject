@@ -6,13 +6,15 @@ export const getEnrollments = createAsyncThunk('getEnrollments', async () => {
     return response.data;
 });
 
-export const createEnrollment = createAsyncThunk('createEnrollment', async (enrollment) => {
+export const createEnrollment = createAsyncThunk('createEnrollment', async (enrollment, {dispatch}) => {
     const response = await axios.post('https://localhost:7046/api/Enrollment/Create', enrollment);
+    dispatch(getEnrollments());
     return response.data;
 });
 
-export const updateEnrollment = createAsyncThunk('updateEnrollment', async (enrollment) => {
+export const updateEnrollment = createAsyncThunk('updateEnrollment', async (enrollment, {dispatch}) => {
     const response = await axios.put('https://localhost:7046/api/Enrollment/Update', enrollment);
+    dispatch(getEnrollments());
     return response.data;
 });
 

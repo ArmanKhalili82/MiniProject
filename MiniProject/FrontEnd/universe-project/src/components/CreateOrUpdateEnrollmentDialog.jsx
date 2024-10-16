@@ -72,9 +72,9 @@ const CreateOrUpdateEnrollmentDialog = ({ isOpen, onClose, enrollment }) => {
             required
           >
             <option value="">Select a Student</option>
-            {students.map((teacher) => (
-              <option key={teacher.teacherId} value={teacher.teacherId}>
-                {teacher.firstName} {teacher.lastName}
+            {students.map((student) => (
+              <option key={student.studentId} value={student.studentId}>
+                {student.firstName} {student.lastName}
               </option>
             ))}
           </select>
