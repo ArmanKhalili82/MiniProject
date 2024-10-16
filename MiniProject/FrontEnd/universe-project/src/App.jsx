@@ -5,10 +5,12 @@ import StudentPage from './pages/StudentPage';
 import TeacherPage from './pages/TeacherPage';
 import CoursePage from './pages/CoursePage';
 import EnrollmentPage from './pages/EnrollmentPage';
+import Navbar from './components/header/Navbar';
 
 const App = () => {
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/students" element={<StudentPage />} />

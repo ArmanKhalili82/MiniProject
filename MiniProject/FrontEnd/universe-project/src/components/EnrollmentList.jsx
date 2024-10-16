@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getEnrollments } from '../redux/slices/enrollmentsSlice'; 
+import { getEnrollmentDetails } from '../redux/slices/enrollmentsSlice'; 
 import Button from './ui/Button';
 
 const EnrollmentList = ({ onEdit, onDelete }) => {
@@ -11,7 +11,7 @@ const EnrollmentList = ({ onEdit, onDelete }) => {
 
   useEffect(() => {
     if (status === 'idle') {
-      dispatch(getEnrollments());
+      dispatch(getEnrollmentDetails());
     }
   }, [status, dispatch]);
 
@@ -23,19 +23,19 @@ const EnrollmentList = ({ onEdit, onDelete }) => {
       <table className="min-w-full bg-white border border-gray-200">
         <thead>
           <tr>
-            <th className="py-2 px-4 border-b">Student ID</th>
-            <th className="py-2 px-4 border-b">Teacher ID</th>
-            <th className="py-2 px-4 border-b">Course ID</th>
+            <th className="py-2 px-4 border-b">Student Name</th>
+            <th className="py-2 px-4 border-b">Teacher Name</th>
+            <th className="py-2 px-4 border-b">Course Name</th>
             <th className="py-2 px-4 border-b">Actions</th>
           </tr>
         </thead>
         <tbody>
           {enrollments.map((enrollment) => (
             <tr key={enrollment.enrollmentId}>
-              <td className="py-2 px-4 border-b text-center">{enrollment.studentId}</td>
-              <td className="py-2 px-4 border-b text-center">{enrollment.teacherId}</td>
-              <td className="py-2 px-4 border-b text-center">{enrollment.courseId}</td>
-              <td className="py-2 px-4 border-b">
+              <td className="py-2 px-4 border-b text-center">{enrollment.student.firstName}</td>
+              <td className="py-2 px-4 border-b text-center">{enrollment.teacher.firstName}</td>
+              <td className="py-2 px-4 border-b text-center">{enrollment.course.courseName}</td>
+              <td className="py-2 px-4 border-b text-center">
                 <Button onClick={() => onEdit(enrollment)} className="mr-2">Edit</Button>
                 <Button onClick={() => onDelete(enrollment.enrollmentId)} className="bg-red-500 hover:bg-red-600">
                   Delete

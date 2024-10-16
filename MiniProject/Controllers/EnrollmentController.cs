@@ -34,6 +34,13 @@ namespace MiniProject.Controllers
             //return Ok(enrollments);
         }
 
+        [HttpGet("Details")]
+        public async Task<ActionResult<List<EnrollmentDetailsDto>>> GetAllEnrollmentsDetails()
+        {
+            var enrollmentDetails = await _enrollmentService.GetAllEnrollmentsDetails();
+            return Ok(enrollmentDetails);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<EnrollmentDto>> GetEnrollment(int id)
         {

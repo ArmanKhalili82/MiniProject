@@ -1,24 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../api/axios";
 
 export const getStudents = createAsyncThunk('getStudents', async () => {
-    const response = await axios.get('https://localhost:7046/api/Student/GetStudents');
+    const response = await axios.get('/Student/GetStudents');
     return response.data;
 });
 
 export const studentDetails = createAsyncThunk('studentDetails', async (studentId) => {
-  const response = await axios.get(`https://localhost:7046/api/Student/${studentId}/details`);
+  const response = await axios.get(`/Student/${studentId}/details`);
   return response.data;
 })
 
 export const createStudent = createAsyncThunk('createStudent', async (student, {dispatch}) => {
-    const response = await axios.post('https://localhost:7046/api/Student/Create', student);
+    const response = await axios.post('/Student/Create', student);
     dispatch(getStudents());
     return response.data;
 });
 
 export const updateStudent = createAsyncThunk('updateStudent', async (student, {dispatch}) => {
-    const response = await axios.put('https://localhost:7046/api/Student/Update', student);
+    const response = await axios.put('/Student/Update', student);
     dispatch(getStudents());
     return response.data;
 });
@@ -28,7 +28,7 @@ export const deleteStudent = createAsyncThunk('deleteStudent', async (studentId)
   if (!studentId) {
     throw new Error('Invalid ID');
   }
-  await axios.delete(`https://localhost:7046/api/Student/Delete/${studentId}`);
+  await axios.delete(`/Student/Delete/${studentId}`);
   return studentId;
 });
 // export const deleteStudent = createAsyncThunk('deleteStudent', async (studentId) => {

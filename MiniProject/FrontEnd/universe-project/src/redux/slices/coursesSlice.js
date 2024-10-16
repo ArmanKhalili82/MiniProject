@@ -1,19 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../api/axios";
 
 export const getCourses = createAsyncThunk('getCourses', async () => {
-    const response = await axios.get('https://localhost:7046/api/Course/GetCourses');
+    const response = await axios.get('/Course/GetCourses');
     return response.data;
 });
 
 export const createCourse = createAsyncThunk('createCourse', async (course, {dispatch}) => {
-    const response = await axios.post('https://localhost:7046/api/Course/Create', course);
+    const response = await axios.post('/Course/Create', course);
     dispatch(getCourses());
     return response.data;
 });
 
 export const updateCourse = createAsyncThunk('updateCourse', async (course, {dispatch}) => {
-    const response = await axios.put('https://localhost:7046/api/Course/Update', course);
+    const response = await axios.put('/Course/Update', course);
     dispatch(getCourses());
     return response.data;
 });
@@ -22,7 +22,7 @@ export const deleteCourse = createAsyncThunk('deleteCourse', async (courseId) =>
     if (!courseId) {
       throw new Error('Invalid ID');
     }
-    await axios.delete(`https://localhost:7046/api/Course/Delete/${courseId}`);
+    await axios.delete(`/Course/Delete/${courseId}`);
     return courseId;
 });
 

@@ -50,6 +50,44 @@ public class EnrollmentService : IEnrollmentService
         return enrollments;
     }
 
+    public async Task<List<EnrollmentDetailsDto>> GetAllEnrollmentsDetails()
+    {
+        var enrollments = await _context.Enrollments
+            .Include(e => e.Student)
+            .Include(e => e.Teacher)
+            .Include(e => e.Course)
+            .ToListAsync();
+
+        var enrollmentDetails = enrollments.Select(enrollment => new EnrollmentDetailsDto
+        {
+            EnrollmentId = enrollment.EnrollmentId,
+            StudentId = enrollment.StudentId,
+            TeacherId = enrollment.TeacherId,
+            CourseId = enrollment.CourseId,
+            Student = new StudentDto
+            {
+                StudentId = enrollment.Student.StudentId,
+                FirstName = enrollment.Student.FirstName,
+                LastName = enrollment.Student.LastName,
+                NationalId = enrollment.Student.NationalId
+            },
+            Teacher = new TeacherDto
+            {
+                TeacherId = enrollment.Teacher.TeacherId,
+                FirstName = enrollment.Teacher.FirstName,
+                LastName = enrollment.Teacher.LastName
+            },
+            Course = new CourseDto
+            {
+                CourseId = enrollment.Course.CourseId,
+                CourseName = enrollment.Course.CourseName,
+                Unit = enrollment.Course.Unit
+            }
+        }).ToList();
+
+        return enrollmentDetails;
+    }
+
     public async Task<EnrollmentDto> GetById(int id)
     {
         var enrollment = await _context.Enrollments.FindAsync(id);

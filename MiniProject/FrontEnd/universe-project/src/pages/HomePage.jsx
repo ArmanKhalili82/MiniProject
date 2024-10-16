@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Navbar from '../components/header/Navbar';
+// import Navbar from '../components/header/Navbar';
 
 import education from '../assets/education.jpg'
 import university from '../assets/university.jpg'
@@ -44,7 +44,7 @@ const HomePage = () => {
 
     return (
         <div className="p-4">
-            <Navbar />
+            {/* <Navbar /> */}
             <h1 className="text-2xl font-bold mb-4 text-center">Welcome to Our University</h1>
 
             <div className="mb-8">

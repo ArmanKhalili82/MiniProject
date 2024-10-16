@@ -1,19 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../api/axios";
 
 export const getEnrollments = createAsyncThunk('getEnrollments', async () => {
-    const response = await axios.get('https://localhost:7046/api/Enrollment/GetEnrollments');
+    const response = await axios.get('/Enrollment/GetEnrollments');
     return response.data;
 });
 
+export const getEnrollmentDetails = createAsyncThunk('getEnrollmentDetails', async () => {
+  const response = await axios.get('/Enrollment/Details');
+  return response.data;
+})
+
 export const createEnrollment = createAsyncThunk('createEnrollment', async (enrollment, {dispatch}) => {
-    const response = await axios.post('https://localhost:7046/api/Enrollment/Create', enrollment);
+    const response = await axios.post('/Enrollment/Create', enrollment);
     dispatch(getEnrollments());
     return response.data;
 });
 
 export const updateEnrollment = createAsyncThunk('updateEnrollment', async (enrollment, {dispatch}) => {
-    const response = await axios.put('https://localhost:7046/api/Enrollment/Update', enrollment);
+    const response = await axios.put('/api/Enrollment/Update', enrollment);
     dispatch(getEnrollments());
     return response.data;
 });
@@ -22,7 +27,7 @@ export const deleteEnrollment = createAsyncThunk('deleteEnrollment', async (enro
     if (!enrollmentId) {
       throw new Error('Invalid ID');
     }
-    await axios.delete(`https://localhost:7046/api/Student/Delete/${enrollmentId}`);
+    await axios.delete(`/Student/Delete/${enrollmentId}`);
     return enrollmentId;
 });
 
@@ -45,6 +50,19 @@ const enrollmentSlice = createSlice({
         state.items = action.payload;
       })
       .addCase(getEnrollments.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+
+      //Handle get enrollment details
+      .addCase(getEnrollmentDetails.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getEnrollmentDetails.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.items = action.payload;
+      })
+      .addCase(getEnrollmentDetails.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       })

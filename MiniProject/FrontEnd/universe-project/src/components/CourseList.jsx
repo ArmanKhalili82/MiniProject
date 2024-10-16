@@ -31,9 +31,9 @@ const CourseList = ({ onEdit, onDelete }) => {
         <tbody>
           {courses.map((course) => (
             <tr key={course.courseId}>
-              <td className="py-2 px-4 border-b">{course.courseName}</td>
-              <td className="py-2 px-4 border-b">{course.unit}</td>
-              <td className="py-2 px-4 border-b">
+              <td className="py-2 px-4 border-b text-center">{course.courseName}</td>
+              <td className="py-2 px-4 border-b text-center">{course.unit}</td>
+              <td className="py-2 px-4 border-b text-center">
                 <Button onClick={() => onEdit(course)} className="mr-2">Edit</Button>
                 <Button onClick={() => onDelete(course.courseId)} className="bg-red-500 hover:bg-red-600">
                   Delete

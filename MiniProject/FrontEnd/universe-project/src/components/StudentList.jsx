@@ -32,10 +32,10 @@ const StudentList = ({ onEdit, onDelete, onDetail }) => {
         <tbody>
           {students.map((student) => (
             <tr key={student.studentId}>
-              <td className="py-2 px-4 border-b">{student.firstName}</td>
-              <td className="py-2 px-4 border-b">{student.lastName}</td>
-              <td className="py-2 px-4 border-b">{student.nationalId}</td>
-              <td className="py-2 px-4 border-b">
+              <td className="py-2 px-4 border-b text-center">{student.firstName}</td>
+              <td className="py-2 px-4 border-b text-center">{student.lastName}</td>
+              <td className="py-2 px-4 border-b text-center">{student.nationalId}</td>
+              <td className="py-2 px-4 border-b text-center">
                 <Button onClick={() => onEdit(student)}>Edit</Button>
                 <Button onClick={() => onDelete(student.studentId)} className="bg-red-500 hover:bg-red-600 ml-2">
                   Delete
