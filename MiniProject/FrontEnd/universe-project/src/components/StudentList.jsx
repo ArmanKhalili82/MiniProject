@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getStudents } from '../redux/slices/studentsSlice';
 import Button from './ui/Button';
 
-const StudentList = ({ onEdit, onDelete }) => {
+const StudentList = ({ onEdit, onDelete, onDetail }) => {
   const dispatch = useDispatch();
   const students = useSelector((state) => state.students.items);
   const status = useSelector((state) => state.students.status);
@@ -39,6 +39,9 @@ const StudentList = ({ onEdit, onDelete }) => {
                 <Button onClick={() => onEdit(student)}>Edit</Button>
                 <Button onClick={() => onDelete(student.studentId)} className="bg-red-500 hover:bg-red-600 ml-2">
                   Delete
+                </Button>
+                <Button onClick={() => onDetail(student.studentId)} className="bg-green-300 hover:bg-green-600 ml-2">
+                  Details
                 </Button>
               </td>
             </tr>

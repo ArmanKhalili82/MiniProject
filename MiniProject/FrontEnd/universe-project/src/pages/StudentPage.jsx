@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { studentDetails } from '../redux/slices/studentsSlice';
 import { deleteStudent } from '../redux/slices/studentsSlice'; 
 import StudentList from '../components/StudentList';
@@ -8,49 +8,59 @@ import StudentDetailDialog from '../components/StudentDetailDialog';
 import Button from '../components/ui/Button';
 
 const StudentPage = () => {
-  const [isDialogOpen, setDialogOpen] = useState(false);
+  const [isCreateOrUpdateDialogOpen, setCreateOrUpdateDialogOpen] = useState(false);
+  const [isDetailDialogOpen, setDetailDialogOpen] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [selectedStudentId, setSelectedStudentId] = useState(null);
+  const getstudentDetails = useSelector((state) => state.students.studentDetails);
   const dispatch = useDispatch();
 
 
   const handleDetails = (studentId) => {
     setSelectedStudentId(studentId);
-    setDialogOpen(true);
+    setDetailDialogOpen(true);
+    dispatch(studentDetails(studentId));
   };
   const handleEdit = (student) => {
     setSelectedStudent(student);
-    setDialogOpen(true);
+    setCreateOrUpdateDialogOpen(true);
   };
 
   const handleDelete = (id) => {
     dispatch(deleteStudent(id));
   };
 
-  const handleDialogClose = () => {
-    setDialogOpen(false);
+  const handleCreateOrUpdateDialogClose = () => {
+    setCreateOrUpdateDialogOpen(false);
     setSelectedStudent(null);
+  };
+
+  // Handle closing the details dialog
+  const handleDetailDialogClose = () => {
+    setDetailDialogOpen(false);
+    setSelectedStudentId(null);
   };
 
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Students</h1>
-      <Button onClick={() => setDialogOpen(true)} className="mb-4 bg-blue-500 text-white">
+      <Button onClick={() => setCreateOrUpdateDialogOpen(true)} className="mb-4 bg-blue-500 text-white">
         Add Student
       </Button>
       <CreateOrUpdateStudentDialog
-        isOpen={isDialogOpen}
-        onClose={handleDialogClose}
+        isOpen={isCreateOrUpdateDialogOpen}
+        onClose={handleCreateOrUpdateDialogClose}
         student={selectedStudent}
       />
-      <StudentList onEdit={handleEdit} onDelete={handleDelete} />
-      {/* <StudentDetailDialog
-        isOpen={isDialogOpen}
-        onClose={handleDialogClose}
+      <StudentDetailDialog
+        isOpen={isDetailDialogOpen}
+        onClose={handleDetailDialogClose}
         studentId={selectedStudentId}
-        studentDetails={studentDetails}
+        studentDetails={getstudentDetails}
         getStudentDetails={(id) => dispatch(studentDetails(id))}
-      /> */}
+      />
+      <StudentList onEdit={handleEdit} onDelete={handleDelete} onDetail={handleDetails} />
+      
     </div>
   );
 };
