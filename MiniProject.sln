@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniProject", "MiniProject\MiniProject.csproj", "{49D48611-571B-4B6B-83B0-2C6BBEC59328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniProject", "MiniProject\MiniProject.csproj", "{49D48611-571B-4B6B-83B0-2C6BBEC59328}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniProject.Models", "MiniProject.Models\MiniProject.Models.csproj", "{8E1074ED-B0E3-42A6-928B-1795E3BF4653}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniProject.Models", "MiniProject.Models\MiniProject.Models.csproj", "{8E1074ED-B0E3-42A6-928B-1795E3BF4653}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniProject.DataAccess", "MiniProject.DataAccess\MiniProject.DataAccess.csproj", "{6CC33209-502F-4783-9CC3-145D7D661038}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniProject.DataAccess", "MiniProject.DataAccess\MiniProject.DataAccess.csproj", "{6CC33209-502F-4783-9CC3-145D7D661038}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniProject.Business", "MiniProject.Business\MiniProject.Business.csproj", "{A9532832-C490-46BE-BC7F-DA2DEB3ACC81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniProject.Business", "MiniProject.Business\MiniProject.Business.csproj", "{A9532832-C490-46BE-BC7F-DA2DEB3ACC81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniProject.Tests", "MiniProject.Tests\MiniProject.Tests.csproj", "{B615174A-75CD-4D12-BD13-3A2B99E1DB4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{A9532832-C490-46BE-BC7F-DA2DEB3ACC81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9532832-C490-46BE-BC7F-DA2DEB3ACC81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9532832-C490-46BE-BC7F-DA2DEB3ACC81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B615174A-75CD-4D12-BD13-3A2B99E1DB4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B615174A-75CD-4D12-BD13-3A2B99E1DB4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B615174A-75CD-4D12-BD13-3A2B99E1DB4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B615174A-75CD-4D12-BD13-3A2B99E1DB4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

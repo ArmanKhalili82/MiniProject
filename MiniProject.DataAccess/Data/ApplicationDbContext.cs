@@ -77,7 +77,7 @@ public class ApplicationDbContext : DbContext
             new Teacher { TeacherId = 2, FirstName = "Bob", LastName = "Brown" }
         );
 
-        // Seed data for Courses
+        //// Seed data for Courses
         modelBuilder.Entity<Course>().HasData(
             new Course { CourseId = 1, CourseName = "Mathematics", Unit = 3 },
             new Course { CourseId = 2, CourseName = "Physics", Unit = 4 }

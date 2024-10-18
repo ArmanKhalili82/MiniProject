@@ -19,6 +19,7 @@ public class CourseService : ICourseService
         var course = new Course
         {
             CourseName = courseDto.CourseName,
+            Unit = courseDto.Unit,
         };
 
         _context.Courses.Add(course);
