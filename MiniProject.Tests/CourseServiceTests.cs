@@ -100,7 +100,7 @@ namespace MiniProject.Tests
 
             var updatedCourseDto = new CourseDto
             {
-                CourseId = course.CourseId,  // Ensure we're using the correct ID
+                CourseId = course.CourseId,
                 CourseName = "Updated Course",
                 Unit = 5
             };
